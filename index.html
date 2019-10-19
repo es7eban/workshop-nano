@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script>
             Vue.component('post', {
                 props: ['title', 'body'],
@@ -23,8 +23,32 @@
                     <div class="message-body">
                         {{ body }}
                     </div>
+                    <comments></comments>
                 </article>
                 `
+            });
+
+            Vue.component('comments', {
+                template: `
+                <div>
+                    <article class="message is-dark" v-for="comment in commentsArray">
+                        <div class="message-body">
+                            <strong>{{ comment.name }}</strong> <br>
+                            {{ comment.body }}
+                        </div>
+                    </article>  
+                </div>
+                
+                `,
+                data(){
+                    return {
+                        commentsArray: [
+                            {name: 'persona 1', body: 'body comentario uno'},
+                            {name: 'persona 2', body: 'body comentario dos'},
+                            {name: 'persona 3', body: 'body comentario tres'}
+                        ]
+                    }
+                }
             });
 
             new Vue({
